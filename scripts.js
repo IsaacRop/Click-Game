@@ -3,11 +3,14 @@ const button  = document.querySelector('#main-button')
 const theme = document.querySelector('#theme-toggle')
 const body = document.querySelector('body')
 
+const cstats = document.querySelector('#Cstats')
+const astats = document.querySelector('#Astats')
+
 const item1 = document.querySelector('#item1')
 const item2 = document.querySelector('#item2')
 
 let score = 0
-let click_power = 0
+let click_power = 1
 let auto_power = 0
 
 let price1 = 100
@@ -17,6 +20,10 @@ item1.disabled = true
 let price2 = 500
 const price2View = document.querySelector('#price2')
 item2.disabled = true
+
+
+
+
 
 function check(){
 
@@ -44,7 +51,7 @@ theme.addEventListener('click', function(){
 
 button.addEventListener('click', function(){
 
-    score = (score + click_power + 1)
+    score = score + click_power
 
     points.innerHTML = score
 })
@@ -52,12 +59,16 @@ button.addEventListener('click', function(){
 item1.addEventListener('click', function(){
 
     click_power = click_power*2
+    
 
     score = score - price1
     points.innerHTML = score
+    
 
     price1 = price1*2
     price1View.innerHTML = price1
+
+    cstats.innerHTML = click_power
     check()
 })
 
@@ -70,12 +81,17 @@ function loop_point(){
 
 item2.addEventListener('click', function(){
 
-    auto_power = auto_power*2
+
+    auto_power++
     score = score - price2
     points.innerHTML = score
 
+    
+
     price2 = price2*2
     price2View.innerHTML = price2
+
+    astats.innerHTML = auto_power
     check()
 
 })
