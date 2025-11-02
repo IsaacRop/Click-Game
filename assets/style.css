@@ -1,7 +1,171 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+/* --- 1. Definição das Variáveis (Light Mode - Padrão) --- */
+:root {
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --points-color: #000;
+    --store-bg: #ffffff;
+    --store-border: #ddd;
 
+    --main-btn-bg: #ff3300;
+    --main-btn-text: #ffffff;
+    --upgrade-btn-bg: #28a745; /* Verde para 'Buy' */
+    --upgrade-btn-text: #ffffff;
+    
+    --disabled-bg: #cccccc;
+    --disabled-text: #999999;
 }
 
+/* --- 2. Definição das Variáveis (Dark Mode) --- */
+/* Quando o body tiver a classe .dark-mode, estas serão usadas */
+body.dark-mode {
+    --bg-color: #2c2c2c;
+    --text-color: #f1f1f1;
+    --points-color: #ffffff;
+    --store-bg: #3a3a3a;
+    --store-border: #555;
+
+    --main-btn-bg: #ff3300;
+    --main-btn-text: #ffffff;
+    --upgrade-btn-bg: #2ca048; /* Verde mais escuro */
+    --upgrade-btn-text: #ffffff;
+    
+    --disabled-bg: #555555;
+    --disabled-text: #888888;
+}
+
+/* --- 3. Estilos Gerais --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    flex-direction: column; /* Organiza os itens em coluna */
+    align-items: center;    /* Centra horizontalmente */
+    justify-content: flex-start; /* Alinha ao topo */
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 20px; /* Espaço no topo */
+    box-sizing: border-box; /* Garante que padding não estoure a tela */
+    
+    /* Usamos as variáveis! */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    
+    /* Transição suave ao mudar de tema */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- 4. Estilos dos Elementos Principais --- */
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.points {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--points-color);
+}
+
+.main-button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    
+    background-color: var(--main-btn-bg);
+    color: var(--main-btn-text);
+    transition: transform 0.1s, background-color 0.3s;
+}
+
+/* Efeito ao clicar no botão principal */
+.main-button:active {
+    transform: scale(0.98); /* Simula o clique */
+}
+
+/* --- 5. Estilos da Loja (.Store) --- */
+.Store {
+    width: 90%;
+    max-width: 450px;
+    background-color: var(--store-bg);
+    border: 1px solid var(--store-border);
+    border-radius: 10px;
+    padding: 10px 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.Store h1 {
+    text-align: center;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--store-border);
+}
+
+/* --- 6. Estilos dos Itens da Loja (.item) --- */
+.item {
+    display: flex;
+    align-items: center; /* Alinha tudo verticalmente */
+    justify-content: space-between; /* Espaça os elementos */
+    padding: 15px 5px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Remove a borda do último item */
+.item + .item {
+    border-top: 1px solid var(--store-border);
+}
+
+/* Estilo do preço */
+.price {
+    display: inline; /* Faz o <h5> não quebrar a linha */
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Botão de compra */
+.button-item {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: var(--upgrade-btn-bg);
+    color: var(--upgrade-btn-text);
+    transition: background-color 0.3s;
+}
+
+/* --- 7. Estilo CRUCIAL: Botão Desativado --- */
+/* Aplica-se a QUALQUER botão que esteja 'disabled' */
+button:disabled {
+    background-color: var(--disabled-bg);
+    color: var(--disabled-text);
+    cursor: not-allowed;
+    transform: scale(1); /* Tira qualquer efeito de scale */
+}
+
+/* --- 8. Estilo para o Botão de Mudar Tema (Opcional) --- */
+/* Se você adicionar <button id="theme-toggle">...</button> */
+#theme-toggle {
+    position: absolute; /* Flutua no canto */
+    top: 15px;
+    right: 15px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    background-color: var(--upgrade-btn-bg);
+    color: var(--upgrade-btn-text);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+body.dark-mode #theme-toggle {
+    background-color: var(--upgrade-btn-bg);
+}

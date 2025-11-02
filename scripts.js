@@ -1,5 +1,7 @@
 const points = document.querySelector('#points')
 const button  = document.querySelector('#main-button')
+const theme = document.querySelector('#theme-toggle')
+const body = document.querySelector('body')
 
 const item1 = document.querySelector('#item1')
 const item2 = document.querySelector('#item2')
@@ -35,6 +37,11 @@ function check(){
 
 }
 
+theme.addEventListener('click', function(){
+    
+    body.classList.toggle('dark-mode')
+})
+
 button.addEventListener('click', function(){
 
     score = (score + click_power + 1)
@@ -44,13 +51,14 @@ button.addEventListener('click', function(){
 
 item1.addEventListener('click', function(){
 
-    click_power++
+    click_power = click_power*2
 
     score = score - price1
     points.innerHTML = score
 
     price1 = price1*2
     price1View.innerHTML = price1
+    check()
 })
 
 function loop_point(){
@@ -62,14 +70,16 @@ function loop_point(){
 
 item2.addEventListener('click', function(){
 
-    auto_power++
+    auto_power = auto_power*2
     score = score - price2
     points.innerHTML = score
 
     price2 = price2*2
     price2View.innerHTML = price2
+    check()
 
 })
 
 setInterval(loop_point, 1000)
 setInterval(check, 100)
+
